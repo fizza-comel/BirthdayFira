@@ -1,0 +1,353 @@
+/* ============================================================
+   gallery.css — Photo Gallery, Polaroid, Lightbox, Timeline
+   Birthday Gift Website
+   ============================================================ */
+
+/* ============================================================
+   GALLERY SECTION
+============================================================ */
+.gallery-section {
+  padding: var(--section-padding);
+  background: var(--bg-primary);
+  overflow: hidden;
+}
+
+/* Polaroid grid */
+.gallery-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Individual Polaroid card */
+.polaroid {
+  background: var(--white);
+  padding: 14px 14px 52px;
+  border-radius: 3px;
+  box-shadow:
+    0 4px 12px rgba(0,0,0,0.12),
+    0 0 0 1px rgba(0,0,0,0.04);
+  transform: rotate(var(--rot, 0deg));
+  transition:
+    transform   0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow  0.3s ease,
+    z-index     0s;
+  cursor: pointer;
+  position: relative;
+  width: 200px;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.polaroid:hover {
+  transform: rotate(0deg) translateY(-12px) scale(1.06);
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.18),
+    0 0 0 1px rgba(248,175,199,0.3);
+  z-index: 20;
+}
+
+/* Polaroid image area */
+.polaroid-img-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--bg-secondary);
+  overflow: hidden;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.polaroid-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.polaroid:hover .polaroid-img-wrap img {
+  transform: scale(1.08);
+}
+
+/* Emoji placeholder (when no real image) */
+.polaroid-placeholder {
+  font-size: 3rem;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* Polaroid caption text */
+.polaroid-caption {
+  text-align: center;
+  font-family: var(--font-script);
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin-top: 10px;
+  line-height: 1.4;
+  padding: 0 4px;
+}
+
+/* Corner tape decorations on some polaroids */
+.polaroid::before,
+.polaroid::after {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 16px;
+  background: rgba(255,240,220,0.7);
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+  pointer-events: none;
+}
+
+/* Randomize tape position per polaroid */
+.polaroid:nth-child(odd)::before  { top: -8px;  left: 20%;  transform: rotate(-3deg); }
+.polaroid:nth-child(odd)::after   { display: none; }
+.polaroid:nth-child(even)::before { top: -8px;  right: 20%; transform: rotate(4deg);  }
+.polaroid:nth-child(even)::after  { display: none; }
+
+/* ============================================================
+   LIGHTBOX
+============================================================ */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 5, 16, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal);
+  cursor: zoom-out;
+  padding: 40px;
+}
+
+.lightbox.active {
+  display: flex;
+  animation: fadeIn 0.3s ease;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.2s;
+  z-index: 10;
+}
+
+.lightbox-close:hover {
+  background: rgba(255,255,255,0.22);
+  transform: rotate(90deg);
+}
+
+.lightbox-inner {
+  max-width: 700px;
+  width: 100%;
+  animation: zoomIn 0.4s var(--ease-bounce);
+  cursor: default;
+}
+
+.lightbox-img-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: rgba(255,255,255,0.06);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 6rem;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.lightbox-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.lightbox-caption {
+  text-align: center;
+  font-family: var(--font-script);
+  font-size: 1.3rem;
+  color: rgba(255,255,255,0.75);
+  margin-top: 20px;
+}
+
+/* ============================================================
+   TIMELINE SECTION
+============================================================ */
+.timeline-section {
+  padding: var(--section-padding);
+  background: var(--bg-secondary);
+}
+
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Vertical center line */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--pink-accent) 10%,
+    var(--pink-accent) 90%,
+    transparent 100%
+  );
+}
+
+/* Timeline item wrapper */
+.timeline-item {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: calc(50% + 48px);
+  margin-bottom: 64px;
+}
+
+.timeline-item.right {
+  justify-content: flex-start;
+  padding-right: 0;
+  padding-left: calc(50% + 48px);
+}
+
+/* Dot on the center line */
+.timeline-dot {
+  position: absolute;
+  left: 50%;
+  top: 28px;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 18px;
+  background: var(--pink-primary);
+  border: 3px solid var(--white);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px var(--pink-accent), 0 4px 12px var(--shadow-pink);
+  z-index: 2;
+  animation: dotPulse 2.5s ease-in-out infinite;
+}
+
+.star-dot {
+  background: var(--rose-gold);
+  width: 24px;
+  height: 24px;
+  box-shadow: 0 0 0 5px var(--pink-accent), 0 4px 20px var(--shadow-deep);
+}
+
+/* Content card */
+.timeline-content {
+  padding: 28px 32px;
+  max-width: 340px;
+  transition: transform 0.3s var(--ease-bounce), box-shadow 0.3s ease;
+}
+
+.timeline-content:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 16px 40px var(--shadow-deep);
+}
+
+.highlight-card {
+  background: rgba(255, 240, 245, 0.75);
+  border-color: var(--pink-primary);
+}
+
+/* Timeline year badge */
+.timeline-year {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--rose-gold);
+  background: rgba(248,175,199,0.18);
+  padding: 4px 14px;
+  border-radius: 50px;
+  margin-bottom: 12px;
+}
+
+.special-year {
+  background: var(--gradient-pink);
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 1rem;
+  animation: gradientShift 3s ease infinite;
+}
+
+.timeline-event {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+.timeline-desc {
+  font-family: var(--font-body);
+  font-size: 0.93rem;
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+/* ============================================================
+   Gallery filter buttons (optional, for future use)
+============================================================ */
+.gallery-filters {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 8px 20px;
+  border: 1.5px solid var(--pink-accent);
+  background: transparent;
+  color: var(--rose-gold);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--gradient-pink);
+  color: var(--white);
+  border-color: transparent;
+  transform: scale(1.05);
+}

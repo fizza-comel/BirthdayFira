@@ -1,0 +1,406 @@
+/* ============================================================
+   responsive.css — All breakpoints for responsive design
+   Birthday Gift Website
+   ============================================================ */
+
+/* ============================================================
+   BASE (Mobile First — 320px+)
+============================================================ */
+
+/* Ensure readable text on smallest screens */
+.hero-title {
+  font-size: clamp(2.2rem, 10vw, 7rem);
+}
+
+.big-number {
+  font-size: clamp(5rem, 20vw, 14rem);
+}
+
+/* Simplify timeline on mobile */
+.timeline::before {
+  left: 20px;
+  transform: none;
+}
+
+.timeline-item,
+.timeline-item.right {
+  flex-direction: column;
+  padding-right: 0;
+  padding-left: 64px;
+  justify-content: flex-start;
+}
+
+.timeline-dot {
+  left: 20px;
+  transform: none;
+}
+
+.timeline-content {
+  max-width: 100%;
+  width: 100%;
+}
+
+/* Gallery grid — single column */
+.gallery-grid {
+  flex-direction: column;
+  align-items: center;
+}
+
+.polaroid {
+  width: min(220px, 80vw);
+}
+
+/* Stats — single column on mobile */
+.stats-grid {
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.stat-card {
+  padding: 28px 16px;
+}
+
+/* Gratitude — single column */
+.gratitude-grid {
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+/* Memory wall — single column */
+.memory-wall {
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+/* Intro card more compact */
+.intro-card {
+  padding: 40px 28px;
+}
+
+/* Letter — full width */
+.letter-paper {
+  padding: 32px 24px;
+}
+
+/* Music control smaller */
+.music-control {
+  width: 48px;
+  height: 48px;
+  bottom: 20px;
+  right: 20px;
+}
+
+/* Quote */
+.quote-mark {
+  font-size: 4rem;
+}
+
+.main-quote {
+  font-size: clamp(1.6rem, 6vw, 3.5rem);
+}
+
+/* ============================================================
+   SMALL MOBILE (480px and below)
+============================================================ */
+@media (max-width: 480px) {
+  :root {
+    --section-padding: 72px 20px;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .hero-scroll-hint {
+    display: none; /* save space on tiny screens */
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  .envelope {
+    width: 240px;
+    height: 150px;
+  }
+
+  .ending-content {
+    padding: 40px 16px;
+  }
+
+  .secret-content {
+    padding: 20px 16px;
+  }
+
+  .intro-card {
+    padding: 32px 20px;
+  }
+
+  .intro-headline {
+    font-size: 1.1rem;
+  }
+
+  .timeline-item,
+  .timeline-item.right {
+    padding-left: 52px;
+  }
+
+  .timeline-dot,
+  .star-dot {
+    left: 14px;
+  }
+
+  .timeline::before {
+    left: 14px;
+  }
+
+  .hero-name {
+    font-size: 1.5rem;
+  }
+}
+
+/* ============================================================
+   TABLET (768px+)
+============================================================ */
+@media (min-width: 768px) {
+  :root {
+    --section-padding: 100px 40px;
+  }
+
+  /* Gallery — 2-3 columns */
+  .gallery-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .polaroid {
+    width: 190px;
+  }
+
+  /* Gratitude — 2 columns */
+  .gratitude-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  /* Memory wall — 2 cols */
+  .memory-wall {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  /* Stats — 2 columns still */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  /* Timeline — restore two-sided on tablet+ */
+  .timeline::before {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .timeline-item {
+    justify-content: flex-end;
+    padding-right: calc(50% + 48px);
+    padding-left: 0;
+  }
+
+  .timeline-item.right {
+    justify-content: flex-start;
+    padding-left: calc(50% + 48px);
+    padding-right: 0;
+  }
+
+  .timeline-dot {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .timeline-content {
+    max-width: 320px;
+  }
+
+  /* Intro card */
+  .intro-card {
+    padding: 56px 52px;
+  }
+
+  /* Letter */
+  .letter-paper {
+    padding: 52px 48px;
+  }
+
+  /* Quote */
+  .quote-mark {
+    font-size: 5rem;
+  }
+}
+
+/* ============================================================
+   DESKTOP (1024px+)
+============================================================ */
+@media (min-width: 1024px) {
+  :root {
+    --section-padding: 120px 60px;
+  }
+
+  /* Gallery — more columns, bigger photos */
+  .gallery-grid {
+    gap: 28px;
+  }
+
+  .polaroid {
+    width: 200px;
+  }
+
+  /* Gratitude — 3 columns */
+  .gratitude-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  /* Memory wall — masonry-style 3 cols */
+  .memory-wall {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  /* Stats — 4 columns */
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  /* Timeline content wider */
+  .timeline-content {
+    max-width: 360px;
+  }
+
+  /* Envelope bigger */
+  .envelope {
+    width: 300px;
+    height: 200px;
+  }
+}
+
+/* ============================================================
+   LARGE DESKTOP (1280px+)
+============================================================ */
+@media (min-width: 1280px) {
+  :root {
+    --section-padding: 130px 80px;
+  }
+
+  .gallery-grid {
+    max-width: 1200px;
+  }
+
+  .gratitude-grid {
+    max-width: 1100px;
+  }
+
+  .memory-wall {
+    max-width: 1200px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Polaroid slightly bigger on large screens */
+  .polaroid {
+    width: 215px;
+  }
+
+  .timeline {
+    max-width: 900px;
+  }
+
+  .timeline-content {
+    max-width: 380px;
+    padding: 32px 36px;
+  }
+}
+
+/* ============================================================
+   ULTRA WIDE (1600px+)
+============================================================ */
+@media (min-width: 1600px) {
+  html {
+    font-size: 17px;
+  }
+
+  :root {
+    --section-padding: 140px 100px;
+  }
+
+  .stats-grid {
+    max-width: 1100px;
+  }
+}
+
+/* ============================================================
+   Landscape Mobile (phones in landscape)
+============================================================ */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero-section {
+    min-height: 140vw;
+  }
+
+  .big-number {
+    font-size: 8rem;
+  }
+
+  .intro-card {
+    padding: 28px 40px;
+    max-width: 600px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    gap: 16px;
+  }
+
+  .intro-icon {
+    font-size: 2rem;
+    margin-bottom: 0;
+    align-self: center;
+  }
+
+  .loading-title {
+    font-size: 1.3rem;
+  }
+
+  .ending-content {
+    padding: 30px 24px;
+  }
+}
+
+/* ============================================================
+   Print (just in case someone prints)
+============================================================ */
+@media print {
+  .loading-screen,
+  .intro-section,
+  .secret-page,
+  .music-control,
+  .cursor-glow,
+  .balloon-layer,
+  .particles-canvas {
+    display: none !important;
+  }
+
+  .main-content {
+    display: block !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+}

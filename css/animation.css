@@ -1,0 +1,431 @@
+/* ============================================================
+   animation.css — Keyframes, transitions, special effects
+   Birthday Gift Website
+   ============================================================ */
+
+/* ---- Keyframe Definitions ---- */
+
+/* Gradient background shift */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Generic fade in up */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Generic fade in down */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Generic fade in */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Scale in with bounce */
+@keyframes scaleIn {
+  0%   { opacity: 0; transform: scale(0.6); }
+  60%  { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Float up and down */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-14px); }
+}
+
+/* Float in all directions */
+@keyframes floatAround {
+  0%   { transform: translate(0px,   0px)   rotate(0deg); }
+  25%  { transform: translate(12px,  -15px) rotate(5deg); }
+  50%  { transform: translate(-8px,  -28px) rotate(-3deg); }
+  75%  { transform: translate(-15px, -12px) rotate(7deg); }
+  100% { transform: translate(0px,   0px)   rotate(0deg); }
+}
+
+/* Aurora blob float */
+@keyframes aurораFloat {
+  0%   { transform: translate(0, 0) scale(1); opacity: 0.5; }
+  50%  { transform: translate(30px, -20px) scale(1.1); opacity: 0.65; }
+  100% { transform: translate(-20px, 10px) scale(0.95); opacity: 0.45; }
+}
+
+/* Blinking cursor */
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Scroll arrow bounce */
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(8px); }
+}
+
+/* Sparkle/star twinkle */
+@keyframes sparkTwinkle {
+  0%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+  50%       { opacity: 1; transform: scale(1.2) rotate(20deg); }
+}
+
+/* Sparkle float (for generated sparkles) */
+@keyframes sparkleFloat {
+  0%   { opacity: 0; transform: translateY(0) scale(0) rotate(0deg); }
+  30%  { opacity: 1; }
+  70%  { opacity: 0.8; }
+  100% { opacity: 0; transform: translateY(-80px) scale(1.2) rotate(180deg); }
+}
+
+/* Petal fall */
+@keyframes petalFall {
+  0%   { transform: translateY(-20px) rotate(0deg);   opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 0.8; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+/* Petal sway */
+@keyframes petalSway {
+  0%, 100% { margin-left: 0; }
+  25%  { margin-left: 30px; }
+  75%  { margin-left: -30px; }
+}
+
+/* Balloon float up */
+@keyframes balloonFloat {
+  0%   { transform: translateY(120vh) rotate(-5deg); opacity: 0; }
+  5%   { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { transform: translateY(-20vh) rotate(5deg); opacity: 0; }
+}
+
+/* Balloon sway */
+@keyframes balloonSway {
+  0%, 100% { transform: translateX(0) rotate(-5deg); }
+  50%       { transform: translateX(15px) rotate(5deg); }
+}
+
+/* Heartbeat pulse */
+@keyframes heartbeat {
+  0%   { transform: scale(1); }
+  14%  { transform: scale(1.18); }
+  28%  { transform: scale(1); }
+  42%  { transform: scale(1.12); }
+  70%  { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+/* Button glow pulse */
+@keyframes btnGlow {
+  from { opacity: 0.3; transform: scale(0.98); }
+  to   { opacity: 0.7; transform: scale(1.02); }
+}
+
+/* Music wave bars */
+@keyframes musicWave {
+  0%, 100% { transform: scaleY(0.4); }
+  50%       { transform: scaleY(1); }
+}
+
+/* Star twinkle for night sky */
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50%       { opacity: 1;   transform: scale(1.2); }
+}
+
+/* Timeline dot pulse */
+@keyframes dotPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(248, 175, 199, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(248, 175, 199, 0);
+  }
+}
+
+/* Typing cursor blink */
+@keyframes typingCursorBlink {
+  0%, 100% { border-right-color: transparent; }
+  50%       { border-right-color: var(--rose-gold); }
+}
+
+/* Confetti fall */
+@keyframes confettiFall {
+  to {
+    transform: translateY(105vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Firework burst */
+@keyframes fireworkBurst {
+  0%   { transform: scale(0); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* Slide in from left */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide in from right */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Zoom In */
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Heart float */
+@keyframes heartFloat {
+  0%   { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-120px) scale(0.5); opacity: 0; }
+}
+
+/* Ring expand */
+@keyframes ringExpand {
+  to {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+  }
+}
+
+/* Loading fade out */
+@keyframes loadingFadeOut {
+  to { opacity: 0; pointer-events: none; }
+}
+
+/* Page fade in from black */
+@keyframes pageFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Secret page reveal */
+@keyframes secretReveal {
+  from { opacity: 0; transform: scale(1.05); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Glow pulse for special elements */
+@keyframes glowPulse {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(248, 175, 199, 0.5),
+                 0 0 40px rgba(248, 175, 199, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 40px rgba(248, 175, 199, 0.9),
+                 0 0 80px rgba(248, 175, 199, 0.5),
+                 0 0 120px rgba(217, 165, 179, 0.3);
+  }
+}
+
+/* ============================================================
+   Applied Animation Classes
+============================================================ */
+
+/* Fade in on scroll (used with JS intersection observer) */
+.fade-in-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s var(--ease-soft), transform 0.8s var(--ease-soft);
+}
+.fade-in-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Floating hearts (created by JS) */
+.floating-heart {
+  position: fixed;
+  font-size: 1.4rem;
+  pointer-events: none;
+  animation: heartFloat 2s ease-out forwards;
+  z-index: var(--z-float);
+  user-select: none;
+}
+
+/* Generated sparkle dot */
+.sparkle-dot {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--pink-primary);
+  pointer-events: none;
+  animation: sparkleFloat 1.5s ease-out forwards;
+  z-index: var(--z-float);
+}
+
+/* Sparkle star (✦ character) */
+.sparkle-star {
+  position: absolute;
+  font-size: 0.8rem;
+  color: var(--pink-primary);
+  pointer-events: none;
+  animation: sparkleFloat 2.5s ease-out forwards;
+  opacity: 0;
+}
+
+/* Star for night sky */
+.night-star {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  animation: starTwinkle var(--star-dur, 2s) ease-in-out infinite;
+  animation-delay: var(--star-delay, 0s);
+}
+
+/* Petal element */
+.petal {
+  position: absolute;
+  pointer-events: none;
+  animation: petalFall var(--petal-dur, 6s) ease-in-out var(--petal-delay, 0s) infinite,
+             petalSway var(--petal-sway, 3s) ease-in-out var(--petal-delay, 0s) infinite;
+  font-size: var(--petal-size, 1rem);
+}
+
+/* Star (small, decorative) */
+.deco-star {
+  position: absolute;
+  pointer-events: none;
+  color: var(--pink-accent);
+  animation: sparkTwinkle var(--star-dur, 2s) ease-in-out infinite;
+  animation-delay: var(--star-delay, 0s);
+  font-size: var(--star-size, 0.8rem);
+}
+
+/* Balloon element */
+.balloon {
+  position: absolute;
+  pointer-events: none;
+  bottom: -120px;
+  animation: balloonFloat var(--balloon-dur, 6s) ease-in-out forwards;
+  animation-delay: var(--balloon-delay, 0s);
+  font-size: var(--balloon-size, 3rem);
+}
+
+/* Balloon string */
+.balloon::after {
+  content: '';
+  display: block;
+  width: 2px;
+  height: 40px;
+  background: rgba(200,150,170,0.6);
+  margin: 0 auto;
+}
+
+/* ---- Hover ring click effect ---- */
+.click-ring {
+  position: fixed;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--pink-primary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: var(--z-cursor);
+  animation: ringExpand 0.6s ease-out forwards;
+}
+
+/* ---- Intro fade out overlay ---- */
+.fade-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-primary);
+  z-index: 600;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.fade-overlay.active {
+  opacity: 1;
+}
+
+/* ============================================================
+   Scroll-triggered reveal helpers (AOS overrides)
+============================================================ */
+[data-aos] {
+  /* Ensure AOS elements don't block layout before reveal */
+  backface-visibility: hidden;
+}
+
+/* ============================================================
+   Parallax container
+============================================================ */
+.parallax-section {
+  transform-style: preserve-3d;
+  perspective: 1px;
+}
+
+/* ============================================================
+   Timeline Animations
+============================================================ */
+.timeline-dot {
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+/* ============================================================
+   Glow text special (for main ending)
+============================================================ */
+.glow-text {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+/* ============================================================
+   Reduced Motion support
+============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  html { scroll-behavior: auto; }
+}

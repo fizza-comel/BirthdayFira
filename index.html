@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday 🎂</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600&family=Dancing+Script:wght@400;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- AOS (Animate On Scroll) -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animation.css" />
+  <link rel="stylesheet" href="css/gallery.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+
+<body>
+
+  <!-- ============================================================
+       CURSOR GLOW ELEMENT
+  ============================================================ -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- ============================================================
+       PARTICLES CANVAS (soft floating particles background)
+  ============================================================ -->
+  <canvas id="particlesCanvas" class="particles-canvas"></canvas>
+
+  <!-- ============================================================
+       SECTION 1: LOADING SCREEN
+  ============================================================ -->
+  <section id="loadingScreen" class="loading-screen">
+    <div class="loading-content">
+      <div class="loading-sparkles">
+        <span class="spark spark-1">✦</span>
+        <span class="spark spark-2">✦</span>
+        <span class="spark spark-3">✦</span>
+        <span class="spark spark-4">✦</span>
+        <span class="spark spark-5">✦</span>
+      </div>
+      <p class="loading-sub">Happy Birthday...</p>
+      <h1 class="loading-title" id="loadingTitle">Loading your memories...</h1>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <p class="loading-percent" id="loadingPercent">0%</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 2: INTRO / GATE
+  ============================================================ -->
+  <section id="introSection" class="intro-section hidden">
+    <!-- Animated gradient background -->
+    <div class="intro-bg">
+      <div class="aurora aurora-1"></div>
+      <div class="aurora aurora-2"></div>
+      <div class="aurora aurora-3"></div>
+    </div>
+
+    <!-- Floating sparkles layer -->
+    <div class="sparkle-layer" id="sparkleLayer"></div>
+
+    <!-- Floating petals layer -->
+    <div class="petal-layer" id="petalLayer"></div>
+
+    <!-- Small stars layer -->
+    <div class="stars-layer" id="starsLayer"></div>
+
+    <!-- Intro card (glassmorphism) -->
+    <div class="intro-card glass-card" data-aos="zoom-in" data-aos-duration="1000">
+      <div class="intro-icon">🌸</div>
+      <h2 class="intro-headline">A Little Website, Made Just for You.<br />Because turning twenty deserves something
+        unforgettable.</h2>
+      <p class="intro-sub">Happy Birthday🤍</p>
+      <button class="btn-primary glow-btn" id="enterBtn" onclick="handleEnter()">
+        OPEN
+      </button>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MAIN CONTENT (revealed after intro)
+  ============================================================ -->
+  <main id="mainContent" class="main-content hidden">
+
+    <!-- ============================================================
+         SECTION 3: HERO
+    ============================================================ -->
+    <section id="heroSection" class="hero-section">
+      <div class="hero-bg">
+        <div class="aurora aurora-hero-1"></div>
+        <div class="aurora aurora-hero-2"></div>
+      </div>
+      <div class="hero-floating-shapes">
+        <span class="hero-shape hs-1">🌸</span>
+        <span class="hero-shape hs-2">✨</span>
+        <span class="hero-shape hs-3">💫</span>
+        <span class="hero-shape hs-4">🌸</span>
+        <span class="hero-shape hs-5">⭐</span>
+        <span class="hero-shape hs-6">✨</span>
+      </div>
+
+      <div class="hero-content">
+        <p class="hero-label" data-aos="fade-down" data-aos-delay="200">✦ A Special Day ✦</p>
+        <h1 class="hero-title" data-aos="fade-up" data-aos-delay="400">
+          <span class="gradient-text">Happy Birthday</span>
+        </h1>
+        <h2 class="hero-name" data-aos="fade-up" data-aos-delay="600">
+          Elfira Yuliana
+        </h2>
+        <div class="hero-number" data-aos="zoom-in" data-aos-delay="800">
+    <span class="big-number gradient-text" id="secretTwenty">20</span>
+</div>
+        <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="1000">
+          "Every beautiful memory with you."
+        </p>
+        <div class="hero-scroll-hint" data-aos="fade-up" data-aos-delay="1200">
+          <span class="scroll-text">Scroll to explore</span>
+          <div class="scroll-arrow">↓</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 4: LETTER / ENVELOPE
+    ============================================================ -->
+    <section id="letterSection" class="letter-section" data-aos="fade-up" data-aos-duration="800">
+      <div class="section-header">
+        <p class="section-label">✦ A Message For You ✦</p>
+        <h2 class="section-title">A Letter From My Heart</h2>
+      </div>
+
+      <div class="envelope-wrap" id="envelopeWrap">
+        <!-- Envelope visual -->
+        <div class="envelope" id="envelope" onclick="openEnvelope()">
+          <div class="envelope-flap"></div>
+          <div class="envelope-body">
+            <div class="envelope-seal">💌</div>
+            <p class="envelope-hint">Click to open</p>
+          </div>
+        </div>
+
+        <!-- Letter that slides out -->
+        <div class="letter-wrap" id="letterWrap">
+          <div class="letter-paper glass-card">
+            <div class="letter-deco">🌸 ✦ 🌸</div>
+            <!-- Typing effect target -->
+            <div class="letter-body" id="letterBody">
+              <!-- Editable letter content -->
+              <p class="letter-greeting">Dear My Bestfriend</p>
+              <div id="typedLetter" class="typed-letter"></div>
+              <p class="letter-sign">With all my love,<br /><span class="letter-name">Wanita sigma</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 5: PHOTO GALLERY (Polaroid Style)
+    ============================================================ -->
+    <section id="gallerySection" class="gallery-section">
+      <div class="section-header" data-aos="fade-up">
+        <p class="section-label">✦ Our Memories ✦</p>
+        <h2 class="section-title">Photo Gallery</h2>
+        <p class="section-desc">SOOOOoooOOOOOOOO CuTEEEEEEEEEE😙</p>
+      </div>
+
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Gallery items injected by gallery.js -->
+        <!-- Placeholder polaroids for demo -->
+        <div class="polaroid" style="--rot: -3deg" data-aos="zoom-in" data-aos-delay="100">
+          <div class="polaroid-img-wrap">
+            <img src="Foto/foto11.jpg" alt="Foto 1">
+          </div>
+          <p class="polaroid-caption">Sakura Minang ceritanya</p>
+        </div>
+        <div class="polaroid" style="--rot: 2deg" data-aos="zoom-in" data-aos-delay="200">
+          <div class="polaroid-img-wrap">
+            <img src="Foto/foto12.jpg" alt="Foto 2">
+          </div>
+          <p class="polaroid-caption">Baju ma Balonnya bikin tambah cute</p>
+        </div>
+        <div class="polaroid" style="--rot: -1.5deg" data-aos="zoom-in" data-aos-delay="300">
+          <div class="polaroid-img-wrap">
+            <img src="Foto/foto13.jpg" alt="Foto 3">
+          </div>
+          <p class="polaroid-caption">FIRA</p>
+        </div>
+        <div class="polaroid" style="--rot: 3.5deg" data-aos="zoom-in" data-aos-delay="400">
+          <div class="polaroid-img-wrap">
+           <img src="Foto/foto14.jpg" alt="Foto 4">
+          </div>
+          <p class="polaroid-caption">AWOGAOWGOWGOG</p>
+        </div>
+        <div class="polaroid" style="--rot: -2deg" data-aos="zoom-in" data-aos-delay="500">
+          <div class="polaroid-img-wrap">
+           <img src="Foto/foto15.jpg" alt="Foto 5">
+          </div>
+          <p class="polaroid-caption">Comelnya anak pelok</p>
+        </div>
+        <div class="polaroid" style="--rot: 1deg" data-aos="zoom-in" data-aos-delay="600">
+          <div class="polaroid-img-wrap">
+            <img src="Foto/foto1.jpg" alt="Foto 6">
+          </div>
+          <p class="polaroid-caption">Bwahaha ini foto pas Utbk dan pertama kali nonton bioskop gweh, ya bareng lu</p>
+        </div>
+        <div class="polaroid" style="--rot: 1deg" data-aos="zoom-in" data-aos-delay="600">
+          <div class="polaroid-img-wrap">
+            <img src="Foto/foto2.jpg" alt="Foto 7">
+          </div>
+          <p class="polaroid-caption">Puasa 2023 bukber ma naks esempeh</p>
+        </div>
+        <div class="polaroid" style="--rot: 1deg" data-aos="zoom-in" data-aos-delay="600">
+          <div class="polaroid-img-wrap">
+            <img src="Foto/foto3.jpg" alt="Foto 8">
+          </div>
+          <p class="polaroid-caption">Pas mau bikin baju SMA 2021 18 Juli</p>
+        </div>
+      </div>
+
+      <!-- Lightbox -->
+      <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        <div class="lightbox-inner" id="lightboxInner">
+          <div class="lightbox-img-wrap" id="lightboxImgWrap"></div>
+          <p class="lightbox-caption" id="lightboxCaption"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 6: TIMELINE
+    ============================================================ -->
+    <section id="timelineSection" class="timeline-section">
+      <div class="section-header" data-aos="fade-up">
+        <p class="section-label">✦ Our Story ✦</p>
+        <h2 class="section-title">The Timeline</h2>
+        <p class="section-desc">Every chapter of us</p>
+      </div>
+
+      <div class="timeline" id="timeline">
+        <!-- Timeline items injected/animated by timeline.js -->
+        <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content glass-card">
+            <span class="timeline-year">2018</span>
+            <h3 class="timeline-event">SMP</h3>
+            <p class="timeline-desc">Masa Smp kita bisa dekat karena apa ya, jujur gweh lupa dan tiba" udah dekat aja pas kelas 7 tu. Disini kita juga punya circle namanya 'BLOLEKQUIN' bjir kepanjangannya pun jelek banget "jomblo, jeleq, misquen" HAHAHHHAHA. YA serulah pokoknya sampai dengan corona yang buat kita pake masker, gakuat kalo diingat mah.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item right" data-aos="fade-left" data-aos-delay="200">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content glass-card">
+            <span class="timeline-year">2021</span>
+            <h3 class="timeline-event">SMA</h3>
+            <p class="timeline-desc">SMA Kita masih pake pershif-an, lu awalnya sering main ke kelas gw trus lu ditengah" ada cowo yang dekatin lu kasih coklat, anjayyla ni anak. Trus banyak juga kenangannya sampai kita coblos Presiden Pertama kita bareng" trus kita juga dapat duit 100k HAHAA.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-aos="fade-right" data-aos-delay="300">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content glass-card">
+            <span class="timeline-year">2024</span>
+            <h3 class="timeline-event">CoolyAahhh</h3>
+            <p class="timeline-desc">Kalo diingat" panjang juga perjalanan kita buat sampai ketahap ini cuk, dan kita sama" melihat gimana cara kita untuk di titik ini. Banyak lagi yang harus kita lalui cuk dan bakalan lebih serius lagi, dan mimpi kita, janji kita buat travel bareng itu mungkin udah di depan mata. Gaaa Sabarrrrrrr dan terakhir Semoga Kita bisa lulus dengan nilai terbaik kita, AAMIIN....</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 7: GRATITUDE / THANK YOU CARDS
+    ============================================================ -->
+    <section id="gratitudeSection" class="gratitude-section">
+      <div class="section-header" data-aos="fade-up">
+        <p class="section-label">✦ With Gratitude ✦</p>
+        <h2 class="section-title">Thank You For...</h2>
+      </div>
+
+      <div class="gratitude-grid">
+        <div class="gratitude-card glass-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="gratitude-icon">❤️</div>
+          <p class="gratitude-text">Makasi udah hadir di hidup gweh</p>
+        </div>
+        <div class="gratitude-card glass-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="gratitude-icon">😄</div>
+          <p class="gratitude-text">Ketawa bareng lu adalah ketawa yang lepas banget.</p>
+        </div>
+        <div class="gratitude-card glass-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="gratitude-icon">🤗</div>
+          <p class="gratitude-text">Thanks udah nerima gweh yg absurd dan aneh ini, dengerin segala" yg gweh ceritain.</p>
+        </div>
+        <div class="gratitude-card glass-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="gratitude-icon">🏠</div>
+          <p class="gratitude-text">Thanks udah jadi rumah ke 2 gweh.</p>
+        </div>
+        <div class="gratitude-card glass-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="gratitude-icon">✨</div>
+          <p class="gratitude-text">Thank you for believing in me even when I didn't believe in myself.</p>
+        </div>
+        <div class="gratitude-card glass-card" data-aos="fade-up" data-aos-delay="600">
+          <div class="gratitude-icon">💯</div>
+          <p class="gratitude-text">THANKS CUK, LU YANG TERBAIK.</p>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- ============================================================
+         SECTION 9: QUOTE
+    ============================================================ -->
+    <section id="quoteSection" class="quote-section">
+      <div class="quote-bg">
+        <div class="aurora aurora-q1"></div>
+        <div class="aurora aurora-q2"></div>
+      </div>
+      <div class="quote-content" data-aos="zoom-in" data-aos-duration="1200">
+        <div class="quote-mark left">"</div>
+        <blockquote class="main-quote">
+          Terkadang orang asing lebih mengerti.
+        </blockquote>
+        <div class="quote-mark right">"</div>
+        <p class="quote-attr">— Written for you orang asing</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 10: COUNTDOWN / STATS
+    ============================================================ -->
+    <section id="countdownSection" class="countdown-section">
+      <div class="section-header" data-aos="fade-up">
+        <p class="section-label">✦ Celebrating You ✦</p>
+        <h2 class="section-title">20 Years of Wonderful</h2>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card glass-card" data-aos="zoom-in" data-aos-delay="100">
+          <div class="stat-number gradient-text" id="yearsCount">0</div>
+          <div class="stat-label">Beautiful Years</div>
+          <div class="stat-icon">🎂</div>
+        </div>
+        <div class="stat-card glass-card" data-aos="zoom-in" data-aos-delay="200">
+          <div class="stat-number gradient-text" id="daysCount">0</div>
+          <div class="stat-label">Incredible Days</div>
+          <div class="stat-icon">☀️</div>
+        </div>
+        <div class="stat-card glass-card" data-aos="zoom-in" data-aos-delay="300">
+          <div class="stat-number gradient-text" id="hoursCount">0</div>
+          <div class="stat-label">Golden Hours</div>
+          <div class="stat-icon">⏰</div>
+        </div>
+        <div class="stat-card glass-card" data-aos="zoom-in" data-aos-delay="400">
+          <div class="stat-number gradient-text">∞</div>
+          <div class="stat-label">Wonderful Memories</div>
+          <div class="stat-icon">💫</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 11: ENDING
+    ============================================================ -->
+    <section id="endingSection" class="ending-section">
+      <!-- Night sky canvas -->
+      <canvas id="nightCanvas" class="night-canvas"></canvas>
+
+      <div class="ending-content" data-aos="fade-up" data-aos-duration="1500">
+        <div class="ending-stars-deco">✦ ✦ ✦</div>
+        <p class="ending-sub">From the bottom of my heart,</p>
+        <h2 class="ending-title gradient-text">Thank you for being<br />part of my life.</h2>
+        <div class="ending-divider">
+          <span>🌸</span>
+        </div>
+        <h3 class="ending-bday">Happy Birthday 🎂</h3>
+        <p class="ending-love">I hope you're always happy</p>
+
+      </div>
+    </section>
+
+  </main><!-- /mainContent -->
+
+  <!-- ============================================================
+       SECTION 12: SECRET PAGE
+  ============================================================ -->
+ 
+
+    <div class="confetti-wrap" id="confettiWrap">
+      <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BALLOON LAYER (floats up during enter)
+  ============================================================ -->
+  <div class="balloon-layer" id="balloonLayer" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       MUSIC CONTROL
+  ============================================================ -->
+  <div class="music-control" id="musicControl" title="Toggle Music">
+    <div class="music-icon" id="musicIcon">🎵</div>
+    <div class="music-waves">
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <!-- Audio element — replace src with your music file -->
+   <audio id="bgMusic" loop src="music/favorite girl.mp3"></audio>
+  </div>
+
+  <!-- ============================================================
+       EASTER EGG: Konami Code hidden message
+  ============================================================ -->
+  <div class="easter-egg-popup" id="easterEggPopup">
+
+    <div class="easter-egg-inner glass-card">
+
+        <p class="easter-egg-emoji">💌</p>
+
+        <h2>CATATAN RAHASIA</h2>
+
+        <p>
+            ANJAYY KETEKAN SECRET
+            <br><br>
+
+            MAKANAN, MAKANAN APA YANG MUDAH DIBUAT?
+            TAHU EASY YAHAHHAYUK
+            
+            KENAPA BOLA BASKET GA BOLEH BASAH?
+            KARENA HARUS DI LEMPAR KE-RING YAHAHHAHA
+            
+            HBD YAHAHAYUK, CRINGE DAHLAH🤍🌸
+        </p>
+
+        <button onclick="closeEasterEgg()">
+            LOPYUU
+        </button>
+
+    </div>
+
+</div>
+  <!-- ============================================================
+       JAVASCRIPT FILES
+  ============================================================ -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/loading.js"></script>
+  <script src="js/typing.js"></script>
+  <script src="js/confetti.js"></script>
+  <script src="js/balloon.js"></script>
+  <script src="js/music.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/timeline.js"></script>
+  <script src="js/easteregg.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>
